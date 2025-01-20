@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thriller Movies</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            background: black;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('{% static "romancebg.png" %}') no-repeat center center fixed;
+            background-size: cover;
+            z-index: -1; /* Ensure the background is behind all content */
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.2); /* Semi-transparent black background */
+            backdrop-filter: blur(10px); /* Glassmorphism effect */
+            -webkit-backdrop-filter: blur(10px); /* For Safari support */
+            padding: 10px 20px;
+            box-sizing: border-box;
+            z-index: 1; /* Ensures the navbar is on top */
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1em;
+        }
+        .navbar img {
+            height: 80px;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 2; /* Ensure dropdown is above other content */
+        }
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .dropbtn:hover + .dropdown-content, .dropdown-content:hover {
+            display: block;
+        }
+        .content {
+            margin-top: 100px; /* Add margin to avoid navbar overlap */
+        }
+        .content h1 {
+            text-align: center;
+            color: white;
+        }
+        .movies {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Four columns */
+            gap: 20px; /* Space between items */
+            margin-top: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        .movie {
+            position: relative;
+            width: 100%; /* Full width within the grid column */
+            text-align: center;
+            cursor: pointer;
+            overflow: hidden; /* Ensures the hover effect does not overflow the container */
+        }
+        .movie img {
+            width: 100%;
+            height: 200px; /* Set a fixed height */
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out; /* Smooth transition effect */
+        }
+        .movie:hover img {
+            transform: scale(1.1); /* Zoom effect on hover */
+        }
+        .movie-title {
+            margin-top: 10px;
+            font-size: 20px;
+            color: azure;
+        }
+    </style>
+</head>
+<body>
+
+<div class="background"></div>
+
+<div class="navbar">
+    <img src="{% static 'logo.png' %}" alt="Logo">
+    <div>
+        <a href="first.html">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+        <div class="dropdown">
+            <a href="#" class="dropbtn">Genres</a>
+            <div class="dropdown-content">
+                <a href="{% url 'comedy' %}">Comedy</a>
+                <a href="{% url 'action' %}">Action</a>
+                <a href="{% url 'teen' %}">Teen</a>
+                <a href="{% url 'east_asian' %}">East Asian</a>
+                <a href="{% url 'romance' %}">Romance</a>
+                <a href="{% url 'horror' %}">Horror</a>
+                <a href="{% url 'family' %}">Family</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <h1>Top Thriller Movies</h1>
+    <div class="movies">
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt6644200/'">
+            <img src="{% static 'aqp.jpg' %}" alt="A Quiet Place">
+            <div class="movie-title">A Quiet Place</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt0086960/'">
+            <img src="{% static 'bch.jpeg' %}" alt="Beverly Hills Cop">
+            <div class="movie-title">Beverly Hills Cop</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt0113497/?ref_=nv_sr_srsg_0_tt_7_nm_1_in_0_q_jumanji'">
+            <img src="{% static 'jum.jpeg' %}" alt="Jumanji">
+            <div class="movie-title">Jumanji</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt11389872/'">
+            <img src="{% static 'kpa.jpeg' %}" alt="Kingdom of the Planet of the Apes">
+            <div class="movie-title">Kingdom of the Planet of the Apes</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt2737304/?ref_=nv_sr_srsg_0_tt_8_nm_0_in_0_q_bird%2520box'">
+            <img src="{% static 'bb.jpeg' %}" alt="Bird Box">
+            <div class="movie-title">Bird Box</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt2267998/'">
+            <img src="{% static 'gg.jpeg' %}" alt="Gone Girl">
+            <div class="movie-title">Gone Girl</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt1130884/?ref_=nv_sr_srsg_0_tt_6_nm_2_in_0_q_shutter%2520'">
+            <img src="{% static 'si.webp' %}" alt="Shutter Island">
+            <div class="movie-title">Shutter Island</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt3631112/?ref_=nv_sr_srsg_0_tt_7_nm_1_in_0_q_the%2520girl%2520on%2520th'">
+            <img src="{% static 'got.avif' %}" alt="The Girl On The Train">
+            <div class="movie-title">The Girl On The Train</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt4550098/?ref_=nv_sr_srsg_0_tt_7_nm_1_in_0_q_noctu'">
+            <img src="{% static 'na.jpg' %}" alt="Nocturnal Animals">
+            <div class="movie-title">Nocturnal Animals</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt0443706/?ref_=nv_sr_srsg_0_tt_7_nm_1_in_0_q_zodiac'">
+            <img src="{% static 'zod.webp' %}" alt="Zodiac">
+            <div class="movie-title">Zodiac</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt0120338/?ref_=sr_t_13'">
+            <img src="{% static 'titanic.webp' %}" alt="Titanic">
+            <div class="movie-title">Titanic</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt0482571/?ref_=nv_sr_srsg_0_tt_8_nm_0_in_0_q_the%2520prestige'">
+            <img src="{% static 'tp.jpg' %}" alt="The Prestige">
+            <div class="movie-title">The Prestige</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // Dropdown menu functionality
+        document.querySelector('.dropbtn').addEventListener('click', function() {
+            const dropdownContent = document.querySelector('.dropdown-content');
+            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+                const dropdowns = document.getElementsByClassName("dropdown-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === 'block') {
+                        openDropdown.style.display = 'none';
+                    }
+                }
+            }
+        };
+    });
+</script>
+
+</body>
+</html>

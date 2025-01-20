@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>East Asian Movies</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            background: black;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('{% static "east_asian_bg.png" %}') no-repeat center center fixed; /* Updated background image */
+            background-size: cover;
+            z-index: -1; /* Ensure the background is behind all content */
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.2); /* Semi-transparent black background */
+            backdrop-filter: blur(10px); /* Glassmorphism effect */
+            -webkit-backdrop-filter: blur(10px); /* For Safari support */
+            padding: 10px 20px;
+            box-sizing: border-box;
+            z-index: 1; /* Ensures the navbar is on top */
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1em;
+        }
+        .navbar img {
+            height: 80px;
+        }
+        .content {
+            margin-top: 100px; /* Add margin to avoid navbar overlap */
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            margin-top: 20px;
+        }
+        .movies {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Four columns */
+            gap: 20px; /* Space between items */
+            margin: 20px;
+        }
+        .movie {
+            position: relative;
+            width: 100%; /* Full width within the grid column */
+            text-align: center;
+            cursor: pointer;
+            overflow: hidden; /* Ensures the hover effect does not overflow the container */
+        }
+        .movie img {
+            width: 100%;
+            height: 200px; /* Set a fixed height */
+            object-fit: cover; 
+            transition: transform 0.3s ease-in-out; /* Smooth transition effect */
+        }
+        .movie:hover img {
+            transform: scale(1.1); /* Zoom effect on hover */
+        }
+        .movie-title {
+            margin-top: 10px;
+            font-size: 20px;
+            color: azure;
+        }
+    </style>
+</head>
+<body>
+
+<div class="background"></div>
+
+<div class="navbar">
+    <img src="{% static 'logo.png' %}" alt="Logo">
+    <div>
+        <a href="first.html">Home</a>
+        <a href="#about">About</a>
+        <a href="#genres">Genres</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+        <div class="dropdown">
+            <a href="#" class="dropbtn">Genres</a>
+            <div class="dropdown-content">
+                <a href="{% url 'comedy' %}">Comedy</a>
+                <a href="{% url 'action' %}">Action</a>
+                <a href="{% url 'teen' %}">Teen</a>
+                <a href="{% url 'east_asian' %}">East Asian</a>
+                <a href="{% url 'romance' %}">Romance</a>
+                <a href="{% url 'horror' %}">Horror</a>
+                <a href="{% url 'family' %}">Family</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <h1>Top East-Asian Movies</h1>
+    <div class="movies">
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt1194661/?ref_=ls_t_11'">
+            <img src="{% static 'Ikigami.jpeg' %}" alt="Ikigami">
+            <div class="movie-title">Ikigami</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt0338564/?ref_=ls_t_2'">
+            <img src="{% static 'Infernal Affairs.webp' %}" alt="Infernal Affairs">
+            <div class="movie-title">Infernal Affairs</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt0353969/?ref_=ls_t_4'">
+            <img src="{% static 'Memories of Murder.jpeg' %}" alt="Memories of Murder">
+            <div class="movie-title">Memories of Murder</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt10919420/'">
+            <img src="{% static 'Squid Games.webp' %}" alt="Squid Games">
+            <div class="movie-title">Squid Games</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt7057496/'">
+            <img src="{% static 'Forgotten.jpg' %}" alt="Forgotten">
+            <div class="movie-title">Forgotten</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/find/?q=parasite&ref_=nv_sr_sm'">
+            <img src="{% static 'Parasite.webp' %}" alt="Parasite">
+            <div class="movie-title">Parasite</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt0385004/?ref_=ls_t_5'">
+            <img src="{% static 'House of Flying Daggers.jpeg' %}" alt="House of Flying Daggers">
+            <div class="movie-title">House of Flying Daggers</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt1270842/?ref_=ls_t_6'">
+            <img src="{% static 'Norwegian Wood.webp' %}" alt="Norwegian Wood">
+            <div class="movie-title">Norwegian Wood</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt1314652/?ref_=ls_t_14'">
+            <img src="{% static 'The Housemaid.jpg' %}" alt="The Housemaid">
+            <div class="movie-title">The Housemaid</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt0299977/?ref_=ls_t_13'">
+            <img src="{% static 'a taxi Hero.jpeg' %}" alt="Hero">
+            <div class="movie-title">Hero</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt6878038/'">
+            <img src="{% static 'A Taxi Driver.webp' %}" alt="A Taxi Driver">
+            <div class="movie-title">A Taxi Driver</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt2025526/'">
+            <img src="{% static 'War of the Arrows.webp' %}" alt="War of the Arrows">
+            <div class="movie-title">War of the Arrows</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // Dropdown menu functionality
+        document.querySelector('.dropbtn').addEventListener('click', function() {
+            const dropdownContent = document.querySelector('.dropdown-content');
+            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropbtn')) {
+                const dropdowns = document.getElementsByClassName("dropdown-content");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    const openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === 'block') {
+                        openDropdown.style.display = 'none';
+                    }
+                }
+            }
+        };
+    });
+</script>
+
+</body>
+</html>

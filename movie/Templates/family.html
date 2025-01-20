@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Movies</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            background: black;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('{% static "romancebg.png" %}') no-repeat center center fixed;
+            background-size: cover;
+            z-index: -1; /* Ensure the background is behind all content */
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.2); /* Semi-transparent black background */
+            backdrop-filter: blur(10px); /* Glassmorphism effect */
+            -webkit-backdrop-filter: blur(10px); /* For Safari support */
+            padding: 10px 20px;
+            box-sizing: border-box;
+            z-index: 1; /* Ensures the navbar is on top */
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1em;
+        }
+        .navbar img {
+            height: 80px;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.8);
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        .dropdown-content a:hover {
+            background-color: rgba(255, 0, 0, 0.8);
+        }
+        .dropbtn:hover .dropdown-content {
+            display: block;
+        }
+        .content {
+            margin-top: 100px; /* Add margin to avoid navbar overlap */
+        }
+        h1 {
+            text-align: center;
+            color: white;
+        }
+        .movies {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* Four columns */
+            gap: 20px; /* Space between items */
+            margin: 20px;
+        }
+        .movie {
+            position: relative;
+            width: 100%; /* Full width within the grid column */
+            text-align: center;
+            cursor: pointer;
+            overflow: hidden; /* Ensures the hover effect does not overflow the container */
+        }
+        .movie img {
+            width: 100%;
+            height: 200px; /* Set a fixed height */
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out; /* Smooth transition effect */
+        }
+        .movie:hover img {
+            transform: scale(1.1); /* Zoom effect on hover */
+        }
+        .movie-title {
+            margin-top: 10px;
+            font-size: 20px;
+            color: azure;
+        }
+        .back-button {
+            display: block;
+            width: 220px;
+            margin: 40px auto;
+            padding: 10px;
+            text-align: center;
+            font-size: 1.2em;
+            color: white;
+            background-color: rgba(255, 0, 0, 0.6); /* Semi-transparent red */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+            text-decoration: none;
+            position: relative;
+        }
+        .back-button::before, .back-button::after {
+            content: '←';
+            position: absolute;
+            font-size: 1.5em;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .back-button::before {
+            left: 10px;
+        }
+        .back-button::after {
+            right: 10px;
+        }
+        .back-button:hover {
+            background-color: rgba(255, 0, 0, 0.8); /* Darker red on hover */
+            transform: translateX(10px); /* Slide effect */
+        }
+    </style>
+</head>
+<body>
+
+<div class="background"></div>
+
+<div class="navbar">
+    <img src="{% static 'logo.png' %}" alt="Logo">
+    <div>
+        <a href="first.html">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+        <div class="dropdown">
+            <a href="#" class="dropbtn">Genres</a>
+            <div class="dropdown-content">
+                <a href="{% url 'comedy' %}">Comedy</a>
+                <a href="{% url 'action' %}">Action</a>
+                <a href="{% url 'teen' %}">Teen</a>
+                <a href="{% url 'east_asian' %}">East Asian</a>
+                <a href="{% url 'romance' %}">Romance</a>
+                <a href="{% url 'horror' %}">Horror</a>
+                <a href="{% url 'family' %}">Family</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content">
+    <h1>Top Family Movies</h1>
+    <div class="movies">
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt1323594/'">
+            <img src="{% static 'dm.webp' %}" alt="Despicable Me">
+            <div class="movie-title">Despicable Me</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://m.imdb.com/title/tt0110366/?ref_=sr_t_11'">
+            <img src="{% static 'tlr.jpg' %}" alt="The Little Rascals">
+            <div class="movie-title">The Little Rascals</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://m.imdb.com/title/tt0117008/?ref_=sr_t_24'">
+            <img src="{% static 'matilda.webp' %}" alt="Matilda">
+            <div class="movie-title">Matilda</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt13186482/'">
+            <img src="{% static 'muf.webp' %}" alt="Mufasa-The Lion King">
+            <div class="movie-title">Mufasa- The Lion King</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://m.imdb.com/title/tt0113497/?ref_=sr_t_27'">
+            <img src="{% static 'jum.jpeg' %}" alt="Jumanji">
+            <div class="movie-title">Jumanji</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt0099785/'">
+            <img src="{% static 'ha.jpg' %}" alt="Home Alone">
+            <div class="movie-title">Home Alone</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://m.imdb.com/title/tt0108037/?ref_=sr_t_15'">
+            <img src="{% static 'tsk.jpg' %}" alt="The Sandlot Kids">
+            <div class="movie-title">The Sandlot Kids</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt0120783/'">
+            <img src="{% static 'pt.avif' %}" alt="Parent Trap">
+            <div class="movie-title">Parent Trap</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt0454921/'">
+            <img src="{% static 'purs.jpg' %}" alt="The Pursuit of Happyness">
+            <div class="movie-title">The Pursuit of Happyness</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt2543472/?ref_=sr_t_72'">
+            <img src="{% static 'won.jpeg' %}" alt="Wonder">
+            <div class="movie-title">Wonder</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt2771200/'">
+            <img src="{% static 'beauty.jpg' %}" alt="Beauty and the Beast">
+            <div class="movie-title">Beauty and the Beast</div>
+        </div>
+        <div class="movie" onclick="window.location.href='https://www.imdb.com/title/tt3896198/'">
+            <img src="{% static 'gg.jpeg' %}" alt="Guardians of the Galaxy">
+            <div class="movie-title">Guardians of the Galaxy</div>
+        </div>
+    </div>
+    <a href="first.html#genres" class="back-button">Go Back to Genres</a> <!-- Updated link -->
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // Dropdown menu functionality
+        document.querySelector('.dropbtn').addEventListener('click', function() {
+            const dropdownContent = this.nextElementSibling;
+            dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
+        });
+            // Close the dropdown if the user clicks outside of it
+            window.onclick = function(event) {
+                if (!event.target.matches('.dropbtn')) {
+                    const dropdowns = document.getElementsByClassName("dropdown-content");
+                    for (let i = 0; i < dropdowns.length; i++) {
+                        const openDropdown = dropdowns[i];
+                        if (openDropdown.style.display === 'block') {
+                            openDropdown.style.display = 'none';
+                        }
+                    }
+                }
+            };
+        });
+    </script>
+</div>
+
+</body>
+</html>
